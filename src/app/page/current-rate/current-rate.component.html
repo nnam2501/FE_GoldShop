@@ -1,0 +1,46 @@
+<form [formGroup]="exchangeForm">
+  <input type="text" name="to" formControlName="to" [(ngModel)]="exchange.to" />
+  <input
+    type="text"
+    name="from"
+    formControlName="from"
+    [(ngModel)]="exchange.from"
+  />
+  <input
+    type="text"
+    name="amount"
+    formControlName="amount"
+    [(ngModel)]="exchange.amount"
+  />
+  <button
+    type="submit"
+    value="add"
+    class="btn-add"
+    (click)="onExchange(exchange)"
+  >
+    THÊM MỚI
+  </button>
+</form>
+
+<select name="to" id="" (change)="onChange($event)">
+  <option *ngFor="let item of symbols" [value]="item.code">
+    {{ item.description }}
+  </option></select
+><br />
+<select name="from" id="" (change)="onChange($event)">
+  <option *ngFor="let item of symbols" [value]="item.code">
+    {{ item.description }}
+  </option>
+</select>
+<!-- <table>
+  <thead>
+    <th>Mã ngoại tệ</th>
+    <th>Tên ngoại tệ</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of sb">
+      <td>{{ item[1].code }}</td>
+      <td>{{ item[1].description }}</td>
+    </tr>
+  </tbody>
+</table> -->

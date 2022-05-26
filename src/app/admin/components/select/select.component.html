@@ -1,0 +1,5 @@
+<select multiple [(ngModel)]="yourModelStore">
+  <option *ngFor="let item of myValues" [value]="item.value">
+    {{ item.name }}
+  </option>
+</select>

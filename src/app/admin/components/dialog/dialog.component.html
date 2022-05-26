@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-header> Thông Báo</nb-card-header>
+  <nb-card-body>
+    {{ content }}
+  </nb-card-body>
+  <nb-card-footer>
+    <button id="cancel" nbButton status="danger" (click)="cancel()">
+      Cancel
+    </button>
+    <button id="submit" nbButton status="success" (click)="submit()">
+      Submit
+    </button>
+  </nb-card-footer>
+</nb-card>

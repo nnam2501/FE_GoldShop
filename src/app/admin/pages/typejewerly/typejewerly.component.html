@@ -1,0 +1,8 @@
+<!-- <button nbButton (click)="onAdd($event)">Theem moiw</button> -->
+<ng2-smart-table
+  [settings]="settings"
+  [source]="dtType"
+  (createConfirm)="onAdd($event)"
+  (editConfirm)="onEdit($event)"
+  (deleteConfirm)="onDelete($event)"
+></ng2-smart-table>
