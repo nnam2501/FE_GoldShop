@@ -1,0 +1,33 @@
+<!-- <input
+  [ngClass]="inputClass"
+  type="file"
+  (change)="updateValue($event)"
+  [name]="cell.getId()"
+  [disabled]="!cell.isEditable()"
+  [placeholder]="cell.getTitle()"
+  #fileInput
+  (click)="fileInput.click()"
+/> -->
+
+<input
+  type="file"
+  [(ngModel)]="cell.newValue"
+  [name]="cell.getId()"
+  [placeholder]="cell.getTitle()"
+  [disabled]="!cell.isEditable()"
+  (click)="onClick.emit($event)"
+  nbInput
+  (change)="readUrl($event)"
+/>
+
+<!-- <input
+  [ngClass]="inputClass"
+  type="file"
+  [name]="cell.getId()"
+  [disabled]="!cell.isEditable()"
+  [placeholder]="cell.getTitle()"
+  #fileInput
+  (click)="fileInput.click()"
+/> -->
+
+<!-- <input nbInput type="file" /> -->

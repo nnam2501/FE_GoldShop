@@ -1,5 +1,30 @@
-<select multiple [(ngModel)]="yourModelStore">
-  <option *ngFor="let item of myValues" [value]="item.value">
-    {{ item.name }}
+<!-- <select
+  [(ngModel)]="yourModelStore"
+  multiple
+  (ngModelChange)="selectChange($event)"
+>
+  <option *ngFor="let item of dataType" [value]="item.id">
+    {{ item.typeName }}
+  </option>
+</select>
+ -->
+
+<select
+  [ngClass]="inputClass"
+  class="form-control"
+  [(ngModel)]="cell.newValue"
+  [name]="cell.getId()"
+  [disabled]="!cell.isEditable()"
+  (click)="onClick.emit($event)"
+  (keydown.enter)="onEdited.emit($event)"
+  (keydown.esc)="onStopEditing.emit()"
+  multiple
+>
+  <option
+    *ngFor="let option of dataType"
+    [value]="option.id"
+    [selected]="option.value === cell.getValue()"
+  >
+    {{ option.typeName }}
   </option>
 </select>

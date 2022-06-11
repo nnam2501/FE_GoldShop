@@ -1,17 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { NbMenuItem, NbSidebarService, NbIcon } from '@nebular/theme';
+import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
+import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
-  constructor(private sidebarService: NbSidebarService) {}
-
-  ngOnInit(): void {}
-
   items: NbMenuItem[] = [
     {
       title: 'Trang chủ',
@@ -46,8 +42,18 @@ export class DashboardComponent implements OnInit {
       ],
     },
   ];
+  constructor(
+    private sidebarService: NbSidebarService,
+    private route: Router
+  ) {}
+
+  ngOnInit(): void {}
 
   toggle() {
     this.sidebarService.toggle(true, 'left-sidebar');
+  }
+  logout() {
+    localStorage.removeItem('access_token');
+    this.route.navigate(['/']);
   }
 }

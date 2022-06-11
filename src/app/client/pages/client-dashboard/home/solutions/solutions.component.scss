@@ -1,0 +1,44 @@
+.solution {
+    width: 1422px;
+    height: 726px;
+    position: relative;
+    margin: 0px 249px 120px 249px;
+
+    &-content {
+        width: 610px;
+        height: 259px;
+
+        &-title {
+            width: 565px;
+            height: 117px;
+            font-family: 'Proxima-Bold', sans-serif;
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 58px;
+            color: #111010;
+            margin-bottom: 30px;
+        }
+
+        &-description{
+            font-family: 'Proxima-Regular', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 28px;
+            color: #616161;
+            margin-bottom: 50px;
+        }
+    }
+
+    &-image{
+        margin-top: 50px;
+        // margin-bottom: 40px;
+
+        .img-1, .img-2 {
+            margin-right: 66px;
+        }
+    }
+
+    &-button{
+        margin-top: 40px;
+    }
+}

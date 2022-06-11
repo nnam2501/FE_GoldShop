@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header> Danh sách loại sản phẩm </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="dtType"
+      (createConfirm)="onAdd($event)"
+      (editConfirm)="onEdit($event)"
+      (deleteConfirm)="onDelete($event)"
+    ></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

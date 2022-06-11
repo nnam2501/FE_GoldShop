@@ -5,9 +5,10 @@ import {
   NbToastrService,
   NbGlobalLogicalPosition,
 } from '@nebular/theme';
-import { SupplierService } from '../../services/supplier/supplier.service';
-import { CategoryService } from '../../services/category/category.service';
-import { TypejewerlyService } from '../../services/typejewerly/typejewerly.service';
+import { SupplierService } from '../../../services/supplier/supplier.service';
+import { CategoryService } from '../../../services/category/category.service';
+import { TypejewerlyService } from '../../../services/typejewerly/typejewerly.service';
+import { JewerlyService } from '../../../services/jewerly/jewerly.service';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -27,7 +28,8 @@ export class DialogComponent implements OnInit {
     private toastrService: NbToastrService,
     private apiSupp: SupplierService,
     private apiCate: CategoryService,
-    private apiType: TypejewerlyService
+    private apiType: TypejewerlyService,
+    private apiJew: JewerlyService
   ) {}
 
   ngOnInit(): void {}
@@ -43,6 +45,9 @@ export class DialogComponent implements OnInit {
       this.onChange(this.method, this.subjects, this.confirm);
     }
     if (this.subjects === 'loại trang sức') {
+      this.onChange(this.method, this.subjects, this.confirm);
+    }
+    if (this.subjects === 'trang sức') {
       this.onChange(this.method, this.subjects, this.confirm);
     }
   }
@@ -68,39 +73,26 @@ export class DialogComponent implements OnInit {
         break;
       }
     }
-    // if (method === 'post') {
-    //   this.dialogRef.close();
-    //   await this.onAdd(text, confirm);
-    //   this.showToast('success', `Thêm ${text} thành công`);
-    // }
-    // if (method === 'put') {
-    //   this.dialogRef.close();
-    //   await this.onEdit(text, confirm);
-    //   this.showToast('success', `Chỉnh sửa ${text} thành công`);
-    // }
-    // if (method === 'delete') {
-    //   this.dialogRef.close();
-    //   await this.onDelete(text, confirm);
-    //   this.showToast('success', `Xóa ${text} thành công`);
-    // }
   };
 
   onAdd = async (text: string, confirm: any) => {
     if (text === 'nhà cung cấp') {
       await this.apiSupp.postSupp(this.data).subscribe((res) => {
-        console.log(res);
         confirm.resolve(res);
       });
     }
     if (text === 'danh mục') {
       await this.apiCate.postCate(this.data).subscribe((res) => {
-        console.log(res);
         confirm.resolve(res);
       });
     }
     if (text === 'loại trang sức') {
       await this.apiType.postType(this.data).subscribe((res) => {
-        console.log(res);
+        confirm.resolve(res);
+      });
+    }
+    if (text === 'trang sức') {
+      await this.apiJew.postJewerly(this.data).subscribe((res) => {
         confirm.resolve(res);
       });
     }
@@ -119,7 +111,11 @@ export class DialogComponent implements OnInit {
     }
     if (text === 'loại trang sức') {
       await this.apiType.delTmpType(this.data).subscribe((res) => {
-        console.log(res);
+        confirm.resolve(res);
+      });
+    }
+    if (text === 'trang sức') {
+      await this.apiJew.delTmpJewerly(this.data).subscribe((res) => {
         confirm.resolve(res);
       });
     }
@@ -138,6 +134,11 @@ export class DialogComponent implements OnInit {
     }
     if (text === 'loại trang sức') {
       this.apiType.putType(this.data.id, this.data).subscribe((res) => {
+        confirm.resolve(res);
+      });
+    }
+    if (text === 'trang sức') {
+      this.apiJew.putJewerly(this.data.id, this.data).subscribe((res) => {
         console.log(res);
         confirm.resolve(res);
       });

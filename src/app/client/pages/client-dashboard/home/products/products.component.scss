@@ -1,0 +1,66 @@
+.products {
+  height: 837px;
+  width: 1422px;
+  margin: 0px 249px 120px 249px;
+
+  .content {
+    margin-bottom: 40px;
+    align-items: center;
+    text-align: center;
+
+    .title {
+      color: #000000;
+      font-family: "Proxima-Regular", sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: calc(48px / 48px);
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      width: 150px;
+      height: 5px;
+      border-top: 5px solid #c4c4c4;
+      align-self: center;
+      margin-bottom: 30px;
+    }
+
+    .description {
+      width: 826px;
+      height: 56px;
+      color: #616161;
+      font-family: "Proxima-Regular", sans-serif;
+      font-size: 20px;
+      margin-left: 298px;
+      font-weight: 400;
+      line-height: calc(28px / 20px);
+      margin-bottom: 40px;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &-card {
+    width: 1422px;
+    height: 638px;
+    display: flex;
+    flex-direction: row;
+
+    .card-detail-bathroom {
+      margin-right: 24px;
+    }
+
+    .card-detail-marble {
+      margin-right: 30px;
+    }
+
+    .outdoor-kitchen {
+      display: flex;
+      flex-direction: column;
+
+      .card-detail-kitchen {
+        margin-top: -47px;
+      }
+    }
+  }
+}
