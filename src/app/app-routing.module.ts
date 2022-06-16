@@ -28,7 +28,8 @@ const routes: Routes = [
 
   {
     path: 'login',
-    component: LoginComponent,
+    component: NbAuthComponent,
+    children: [{ path: '', component: LoginComponent }],
   },
   {
     path: 'register',

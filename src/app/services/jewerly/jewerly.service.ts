@@ -11,6 +11,10 @@ export class JewerlyService {
     return this.httpClient.get(jewerlyURL);
   };
 
+  getJewerlyById = (id: any) => {
+    return this.httpClient.get(jewerlyURL + `${id}/`);
+  };
+
   postJewerly = (newData: any) => {
     return this.httpClient.post(jewerlyURL, newData);
   };

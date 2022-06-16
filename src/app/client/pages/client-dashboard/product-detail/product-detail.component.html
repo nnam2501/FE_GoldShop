@@ -1,0 +1,15 @@
+<p>product-detail works!</p>
+<div *ngIf="product">
+  <h2>{{ product.jewerlyName }}</h2>
+  <div>
+    <img src="{{ product.jewerlyImage }}" alt="" />
+  </div>
+  <div>
+    <p>{{ product.description }}</p>
+  </div>
+  <div>
+    <p>{{ product.price }}</p>
+  </div>
+  <button type="button" (click)="addToCart(product)">Add to cart</button>
+  <button type="button" routerLink="/products">Back to list</button>
+</div>

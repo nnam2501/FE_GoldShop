@@ -1,0 +1,15 @@
+<p>product-page works!</p>
+<div class="">Products</div>
+<div *ngFor="let i of products">
+  <img src="{{ i.jewerlyImage }}" alt="" />
+  <strong>
+    <a [title]="i.jewerlyName + ' detail'" [routerLink]="['/products', i.id]">
+      {{ i.jewerlyName }}
+    </a>
+  </strong>
+
+  <!-- <div class="">{{ i.jewerlyName }}</div> -->
+  <div class="">{{ i.description }}</div>
+  <div class="">{{ i.price }}</div>
+  <button type="button">Add to cart</button>
+</div>

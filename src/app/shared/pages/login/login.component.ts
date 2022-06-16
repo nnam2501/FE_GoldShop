@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbAuthSocialLink } from '@nebular/auth';
-import { NbAuthService } from '@nebular/auth/services/auth.service';
-import { NbLoginComponent } from '@nebular/auth';
+import {
+  NbAuthService,
+  NbLoginComponent,
+  NB_AUTH_OPTIONS,
+} from '@nebular/auth';
 import {
   FormBuilder,
   FormControl,
@@ -12,15 +14,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  providers: [NbAuthService],
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+export class LoginComponent extends NbLoginComponent implements OnInit {
   username: string = '';
   password: string = '';
   token = '';
@@ -30,32 +32,34 @@ export class LoginComponent implements OnInit {
   // status2: boolean = false;
 
   constructor(
-    private router: Router,
+    // private router: Router,
     private http: HttpClient,
     public formBuilder: FormBuilder,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    service: NbAuthService,
+    @Inject(NB_AUTH_OPTIONS) protected override options: {},
+    cd: ChangeDetectorRef,
+    router: Router
+  ) {
+    super(service, options, cd, router);
+  }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      username: [null, Validators.required],
-      password: [null, Validators.required],
-    });
     this.http.get('http://localhost:8000/oauth2-info/').subscribe((data) => {
       this.client = data;
     });
   }
 
-  onFormSubmit() {
-    this.authService
-      .login(this.loginForm.value, this.client)
-      .subscribe((res) => {
-        this.token = res.access_token;
-        localStorage.setItem('access_token', res.access_token);
-        if (this.token) {
-          this.router.navigate(['/dashboard']);
-        }
-      });
+  onFormSubmit(user: any) {
+    console.log(user);
+
+    this.authService.login(user, this.client).subscribe((res) => {
+      this.token = res.access_token;
+      localStorage.setItem('access_token', res.access_token);
+      if (this.token) {
+        this.router.navigate(['/dashboard']);
+      }
+    });
     // this.http.get('http://localhost:8000/oauth2-info/').subscribe((data) => {
     //   this.client = data;
     //   console.log(this.client);
@@ -63,7 +67,6 @@ export class LoginComponent implements OnInit {
     //   this.loginForm.value.client_secret = this.client.client_secret;
     //   this.loginForm.value.grant_type = this.client.grant_type;
     //   console.log(this.loginForm.value);
-
     //   this.http
     //     .post('http://localhost:8000/o/token/', this.loginForm.value)
     //     .subscribe((data) => {

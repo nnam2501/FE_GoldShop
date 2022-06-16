@@ -7,16 +7,17 @@
       <li><a class="active" href="#">HOME</a></li>
       <li><a href="#spaces">SPACES</a></li>
       <li><a href="#products&service">PRODUCTS & SERVICES</a></li>
-      <li><a href="#showrooms">SHOWROOMS</a></li>
-      <li><a routerLink="/products">COMPANY</a></li>
-      <li><a routerLink="/chart-gold-rate">MEDIA</a></li>
+      <li><a routerLink="/products">Sản phẩm</a></li>
+      <li><a routerLink="/chart-gold-rate">Giá vàng thế giới</a></li>
       <li><a href="#contact">CONTACT</a></li>
     </ul>
   </div>
   <div class="menu-function">
     <ul>
       <li>
-        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        <a routerLink="/cart"
+          ><i class="fas fa-shopping-cart"></i>({{ itemCount() }})</a
+        >
       </li>
       <li>
         <a href="#"><i class="far fa-heart"></i></a>

@@ -23,7 +23,11 @@ import {
   NbCheckboxModule,
   NbSelectModule,
 } from '@nebular/theme';
-import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
+import {
+  NbPasswordAuthStrategy,
+  NbAuthModule,
+  NbAuthService,
+} from '@nebular/auth';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
@@ -54,6 +58,7 @@ import { CartComponent } from './client/pages/client-dashboard/cart/cart.compone
     ReactiveFormsModule,
     NbInputModule,
     NbButtonModule,
+    NbEvaIconsModule,
     NbThemeModule.forRoot({ name: 'corporate' }),
     NbAuthModule.forRoot(),
     StoreModule.forRoot({}, {}),
