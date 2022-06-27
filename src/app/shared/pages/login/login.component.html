@@ -1,136 +1,5 @@
 <h1 id="title" class="title">Đăng Nhập</h1>
 <p class="sub-title">Xin chào! Vui lòng đăng nhập bằng tài khoản của bạn.</p>
-<!-- <div [class]="{ color: status, 'background-color': status2 }">aaaa</div> -->
-
-<!-- <form (ngSubmit)="onFormSubmit()" #signInForm="ngForm" [formGroup]="loginForm">
-  <label class="label" for="username">Username:</label>
-  <input
-    formControlName="username"
-    id="username"
-    autofocus
-    ngModel
-    class="form-control"
-    nbInput
-    fullWidth
-  />
-
-  <label class="label" for="password">Mật khẩu:</label>
-  <input
-    ngModel
-    type="password"
-    id="password"
-    class="form-control"
-    formControlName="password"
-    nbInput
-    fullWidth
-  />
-
-  <button nbButton type="submit" status="primary" size="large">
-    Đăng nhập
-  </button>
-</form>
-
-<section class="another-action" aria-label="Register">
-  Bạn chưa có tài khoản?
-  <a class="text-link" routerLink="../register">Đăng kí</a>
-</section> -->
-
-<!-- <div class="login">
-  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
-    <h2>Log In</h2>
-    <label>
-      <input nbInput placeholder="Username" formControlName="username" />
-    </label>
-
-    <label>
-      <input
-        type="password"
-        nbInput
-        placeholder="Password"
-        formControlName="password"
-      />
-    </label>
-
-    <div class="button-row">
-      <button
-        nbButton
-        type="submit"
-        [disabled]="!loginForm.valid"
-        color="primary"
-      >
-        Login
-      </button>
-    </div>
-    <div class="button-row">
-      <h4>Don't have an account?</h4>
-    </div>
-    <div class="button-row">-->
-<!-- <a color="primary" [routerLink]="['/register']">Register</a> -->
-<!-- </div>
-  </form>
-</div>  -->
-<!-- <h1 id="title" class="title">Login</h1>
-<p class="sub-title">Hello! Log in with your email.</p>
-
-<form
-  [formGroup]="loginForm"
-  (ngSubmit)="onSubmit()"
-  #form="ngForm"
-  aria-labelledby="title"
->
-  <div class="form-control-group">
-    <label class="label" for="input-email">Email address:</label>
-    <input
-      nbInput
-      fullWidth
-      formControlName="email"
-      name="email"
-      type="email"
-      id="input-email"
-      pattern=".+@.+\..+"
-      placeholder="Email address"
-      fieldSize="large"
-      [status]="loginForm.controls['email'].valid ? 'basic' : 'danger'"
-    />
-  </div>
-
-  <div class="form-control-group">
-    <span class="label-with-link">
-      <label class="label" for="input-password">Password:</label>
-      <a class="forgot-password caption-2" routerLink="../request-password"
-        >Forgot Password?</a
-      >
-    </span>
-    <input
-      nbInput
-      fullWidth
-      formControlName="password"
-      name="password"
-      type="password"
-      id="input-password"
-      placeholder="Password"
-      fieldSize="large"
-    />
-  </div>
-
-  <div class="form-control-group accept-group">
-    <nb-checkbox name="rememberMe">Remember me</nb-checkbox>
-  </div>
-
-  <button
-    nbButton
-    fullWidth
-    style="background-color: #ff6428; color: #ffffff"
-    size="large"
-  >
-    Log In
-  </button>
-</form>
-
-<section class="another-action" aria-label="Register">
-  Don't have an account?
-  <a class="text-link" routerLink="../register">Register</a>
-</section> -->
 
 <nb-alert
   *ngIf="showMessages.error && errors?.length && !submitted"
@@ -176,9 +45,6 @@
   <div class="form-control-group">
     <span class="label-with-link">
       <label class="label" for="input-password">Mật Khâu:</label>
-      <a class="forgot-password caption-2" routerLink="../request-password"
-        >Forgot Password?</a
-      >
     </span>
     <input
       nbInput
@@ -214,12 +80,12 @@
     </ng-container>
   </div>
 
-  <button nbButton fullWidth status="primary" size="large">Log In</button>
+  <button nbButton fullWidth status="primary" size="large">Đăng nhập</button>
 </form>
 
 <section class="another-action" aria-label="Register">
-  <a class="text-link" routerLink="">Back to home page</a>
+  <a class="text-link" routerLink="">Quay lại</a>
   <br />
-  Don't have an account?
-  <a class="text-link" routerLink="../register">Register</a>
+  Bạn chưa có tài khoản?
+  <a class="text-link" routerLink="../register">Đăng kí</a>
 </section>

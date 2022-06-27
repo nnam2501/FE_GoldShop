@@ -1,0 +1,32 @@
+.collapse-button {
+  display: inline;
+  width: 98%;
+  background-color: #dddddd;
+  color: #000000;
+  // text-align: start;
+  border: 1px solid #f2f4f6;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: "Nunito";
+  padding-left: 15px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+
+.collapse-button-text {
+  color: black;
+  width: 500px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: -20px;
+  padding-top: 10px;
+}
+
+.collapse-button-icon {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 25px;
+  padding-bottom: 10px;
+}

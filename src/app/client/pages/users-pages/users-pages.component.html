@@ -1,0 +1,179 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"> </span>
+</div>
+<div class="container-fluid mt--7">
+  <div class="card bg-secondary shadow">
+    <button nbButton status="danger" (click)="logout()">Đăng xuất</button>
+
+    <div class="card-header bg-white border-0">
+      <h3 class="mb-0">Thông tin người dùng</h3>
+    </div>
+    <div class="card-body" *ngIf="info">
+      <form>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label
+                  class="form-control-label"
+                  for="input-username"
+                  style="color: #ffffff"
+                  >Họ Tên</label
+                >
+                <input
+                  type="text"
+                  id="input-name"
+                  class="form-control form-control-alternative"
+                  placeholder="Full name"
+                  value="{{ info.fullName }}"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label
+                  class="form-control-label"
+                  for="input-phoneNumber"
+                  style="color: #ffffff"
+                  >Số điện thoại</label
+                >
+                <input
+                  type="text"
+                  id="input-phoneNumber"
+                  class="form-control form-control-alternative"
+                  placeholder=""
+                  value="{{ info.phoneNumber }}"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label
+                  class="form-control-label"
+                  for="input-email"
+                  style="color: #ffffff"
+                  >Ngày sinh</label
+                >
+                <input
+                  class="form-control form-control-alternative datepicker"
+                  name="dp"
+                  value="{{ info.dateOfBirth }}"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label
+                  class="form-control-label"
+                  for="input-id-card"
+                  style="color: #ffffff"
+                  >CMND/CCCD</label
+                >
+                <input
+                  type="text"
+                  id="input-id-card"
+                  class="form-control form-control-alternative"
+                  value="{{ info.idNumber }}"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label
+                  class="form-control-label"
+                  for="input-address"
+                  style="color: #ffffff"
+                  >Địa chỉ</label
+                >
+                <input
+                  id="input-address"
+                  class="form-control form-control-alternative"
+                  placeholder="Home Address"
+                  value="{{ infoCustomer[0].address }}"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label
+                  class="form-control-label"
+                  for="input-address"
+                  style="color: #ffffff"
+                  >Giới tính</label
+                >
+                <input
+                  id="input-address"
+                  class="form-control form-control-alternative"
+                  placeholder="Home Address"
+                  value="{{ info.gender ? 'Nam' : 'Nữ' }}"
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h2 class="mb-0">Danh sách đơn đặt hàng</h2>
+        </div>
+        <div *ngFor="let i of dtOrder" style="width: 100%">
+          <button
+            type="button"
+            class="collapse-button"
+            data-toggle="collapse"
+            attr.data-target="#demo{{ i.id }}"
+          >
+            <p class="collapse-button-text">
+              Mã đơn hàng: {{ i.id }} - Ngày đặt hàng:
+              {{ i.orderDate | date: "dd/MM/yyyy" }}
+            </p>
+            <i class="fas fa-caret-right collapse-button-icon"></i>
+          </button>
+          <div id="demo{{ i.id }}" class="collapse table-responsive">
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">NO.</th>
+                  <th scope="col">Mã sản phẩm</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Đơn giá</th>
+                  <th scope="col">Thành tiền</th>
+                  <th scope="col">Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let d of dtDetail">
+                <tr *ngIf="d.order === i.id">
+                  <td>{{ d.id }}</td>
+                  <td>{{ d.jewerly }}</td>
+                  <td>{{ d.quantity }}</td>
+                  <td>{{ d.unitPrice | currency: "VND" }}</td>
+                  <td>{{ d.amount | currency: "VND" }}</td>
+                  <td>
+                    {{ i.active === true ? "Đã đặt hàng" : "Đã giao hàng" }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,14 +21,12 @@
 
   &-copyright {
     color: #ffffff;
-    font-family: "Proxima-Regular ", sans-serif;
     font-size: 9px;
     font-weight: 300;
   }
 
   &-title {
     color: #ffffff;
-    font-family: "Proxima-Bold", sans-serif;
     font-size: 14px;
     font-weight: bold;
     padding-bottom: 15px;
@@ -36,7 +34,6 @@
 
   &-list a {
     color: #a4a4a4;
-    font-family: "Proxima-Regular", sans-serif;
     font-size: 12px;
     font-weight: 300;
     line-height: 23px;
@@ -44,10 +41,20 @@
 
   &-content {
     color: #ffffff;
-    font-family: "Proxima-Regular", sans-serif;
     font-size: 12px;
     font-weight: 300;
     line-height: 23px;
     width: 331px;
   }
+}
+
+.name {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: calc(36px / 32px);
+}
+
+p {
+  color: #ffffff;
 }

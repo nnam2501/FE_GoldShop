@@ -14,7 +14,7 @@ const OAUTH2_SECRET = 'client_secret';
 const API_URL = 'http://localhost:8000/';
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
     // Authorization: 'Basic ' + btoa(OAUTH2_CLIENT + OAUTH2_SECRET),
   }),
 };
@@ -59,17 +59,16 @@ export class AuthService implements OnInit {
       .set('client_secret', client.client_secret)
       .set('grant_type', client.grant_type);
 
-    const data = new FormGroup({
-      username: new FormControl(loginData.username),
-      password: new FormControl(loginData.password),
-      client_id: new FormControl(client.client_id),
-      client_secret: new FormControl(client.client_secret),
-      grant_type: new FormControl(client.grant_type),
-    });
-    console.log(body);
+    const data = {
+      username: loginData.username,
+      password: loginData.password,
+      client_id: client.client_id,
+      client_secret: client.client_secret,
+      grant_type: client.grant_type,
+    };
 
     return this.http
-      .post(API_URL + 'o/token/', body, HTTP_OPTIONS)
+      .post(API_URL + 'o/token/', data, HTTP_OPTIONS)
       .pipe(map((token) => token));
     // .pipe(
     //   tap((res) => {

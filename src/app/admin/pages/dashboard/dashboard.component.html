@@ -17,14 +17,15 @@
         <nb-user
           size="medium"
           shape="semi-round"
-          name="John Doe"
-          title="Engineer"
+          name="{{ infoEmployee[0].fullName }}"
           picture="https://via.placeholder.com/50/4479e7/ffffff?Text=IMG"
         >
         </nb-user>
       </nb-action>
     </nb-actions>
-    <button nbButton (click)="logout()">logout</button>
+    <div class="btn">
+      <button nbButton (click)="logout()">Đăng xuất</button>
+    </div>
   </nb-layout-header>
 
   <nb-sidebar tag="left-sidebar">

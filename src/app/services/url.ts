@@ -12,3 +12,17 @@ export const typejewerlyURL = baseURL + 'type_jewerly/';
 
 //Jewerly API
 export const jewerlyURL = baseURL + 'jewerly/';
+
+//Order API
+export const orderURL = baseURL + 'order/';
+
+//OrderDetail API
+export const orderDetailURL = baseURL + 'order_detail/';
+
+//User API
+export const userURL = baseURL + 'users/';
+
+//Customer API
+export const customerURL = baseURL + 'customer/';
+
+export const employeeURL = baseURL + 'employee/';

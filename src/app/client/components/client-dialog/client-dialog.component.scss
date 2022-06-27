@@ -1,0 +1,41 @@
+::ng-deep {
+  nb-layout-column {
+    height: 80vw;
+  }
+
+  // button + button {
+  //   margin: 1rem;
+  // }
+
+  nb-card {
+    width: 600px;
+  }
+
+  #cancel {
+    margin-left: 0;
+  }
+
+  #submit {
+    margin-right: 0;
+  }
+
+  .dialog-card {
+    margin: 0 auto;
+    // margin-left: auto;
+    // margin-right: auto;
+    width: 90%;
+  }
+
+  @media (min-width: 40rem) {
+    .dialog-card {
+      width: 38rem;
+    }
+  }
+}
+
+button {
+  display: flex;
+  float: left;
+  width: 45%;
+  margin-right: 27px;
+}

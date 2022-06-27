@@ -100,7 +100,9 @@ export class TypejewerlyComponent implements OnInit {
       this.data = res;
       this.dtCate = this.data;
       for (let c of this.dtCate) {
+        // if (c.active === true) {
         this.apiCate.push({ value: c.id, title: c.categoryName });
+        // }
       }
       this.getData(this.apiCate);
       console.log(this.apiCate);

@@ -1,15 +1,44 @@
-<p>product-page works!</p>
-<div class="">Products</div>
-<div *ngFor="let i of products">
-  <img src="{{ i.jewerlyImage }}" alt="" />
-  <strong>
-    <a [title]="i.jewerlyName + ' detail'" [routerLink]="['/products', i.id]">
-      {{ i.jewerlyName }}
-    </a>
-  </strong>
+<div class="main">
+  <div class="content">
+    <div class="sidebar">
+      <nb-card style="width: fit-content">
+        <nb-card-header>Lọc sản phẩm theo:</nb-card-header>
+        <nb-card-body>
+          <nb-button-group
+            multiple
+            (valueChange)="selectValue($event)"
+            *ngFor="let i of typeJew"
+          >
+            <button nbButtonToggle value="{{ i.id }}">
+              {{ i.typeName }}
+            </button>
+          </nb-button-group>
+        </nb-card-body>
+      </nb-card>
+    </div>
 
-  <!-- <div class="">{{ i.jewerlyName }}</div> -->
-  <div class="">{{ i.description }}</div>
-  <div class="">{{ i.price }}</div>
-  <button type="button">Add to cart</button>
+    <div class="products">
+      <div *ngFor="let i of products">
+        <nb-card class="card">
+          <nb-card-header>
+            <a
+              [title]="i.jewerlyName + ' detail'"
+              [routerLink]="['/products', i.id]"
+            >
+              {{ i.jewerlyName }}
+            </a>
+          </nb-card-header>
+          <nb-card-body class="card-body">
+            <img src="{{ i.jewerlyImage }}" alt="" />
+          </nb-card-body>
+          <nb-card-footer>
+            <p>
+              Giá:
+              {{ i.price | currency: "VND" }}
+            </p>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+    </div>
+  </div>
 </div>

@@ -4,3 +4,9 @@
   display: flex;
   justify-content: center;
 }
+
+p {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: calc(32px / 28px);
+}

@@ -1,7 +1,9 @@
 <!-- TradingView Widget BEGIN -->
 
 <nb-layout>
-  <nb-layout-header> </nb-layout-header>
+  <nb-layout-header class="title"
+    >BẢNG GIẤ VÀNG TRONG VÀ NGOÀI NƯỚC</nb-layout-header
+  >
   <nb-layout-column>
     <div class="tradingview-widget-container">
       <div id="chart-gold-rate"></div>
@@ -10,16 +12,18 @@
           href="https://vn.tradingview.com/symbols/XAUUSD/"
           rel="noopener"
           target="_blank"
-          ><span class="blue-text">XAUUSD Biểu đồ</span>
+          ><span class="blue-text">Biểu đồ giá vàng thế giới</span>
         </a>
         bởi TradingView
       </div>
     </div>
-    <iframe
-      frameborder="0"
-      height="390px"
-      width="500px"
-      src="https://webtygia.com/api/json/cong-cu-chuyen-doi-tien-te?maukhungketqua=009688&mauchuketqua=ffffff&sizechuketqua=30&fontsize=13&border=1&hienthamkhao=0&undefined"
-    ></iframe>
+    <div>
+      <iframe
+        frameborder="0"
+        width="100%"
+        height="800px"
+        src="https://webtygia.com/api/vang?bgheader=000000&colorheader=ffffff&padding=5&fontsize=13&undefined"
+      ></iframe>
+    </div>
   </nb-layout-column>
 </nb-layout>

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NbAuthComponent } from '@nebular/auth';
 
 import { AuthGuard } from './auth/auth.guard';
+import { UsersPagesComponent } from './client/pages/users-pages/users-pages.component';
 import { LoginComponent } from './shared/pages/login/login.component';
 import { RegisterComponent } from './shared/pages/register/register.component';
 
@@ -15,8 +16,6 @@ const routes: Routes = [
         (m) => m.ClientDashboardModule
       ),
   },
-  // { path: 'chart-gold-rate', component: ChartGoldRateComponent },
-
   {
     path: '',
     component: NbAuthComponent,
@@ -26,11 +25,11 @@ const routes: Routes = [
     ],
   },
 
-  {
-    path: 'login',
-    component: NbAuthComponent,
-    children: [{ path: '', component: LoginComponent }],
-  },
+  // {
+  //   path: 'login',
+  //   component: NbAuthComponent,
+  //   children: [{ path: '', component: LoginComponent }],
+  // },
   {
     path: 'register',
     component: RegisterComponent,

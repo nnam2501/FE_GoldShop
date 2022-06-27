@@ -7,6 +7,8 @@ import { SolutionsComponent } from './solutions/solutions.component';
 import { ShowroomsComponent } from './showrooms/showrooms.component';
 import { BannerComponent } from './banner/banner.component';
 import { CollectionsComponent } from './collections/collections.component';
+import { HomeRoutingModule } from './home-routing.module';
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,9 @@ import { CollectionsComponent } from './collections/collections.component';
     BannerComponent,
     ShowroomsComponent,
     CollectionsComponent,
+    ProjectsComponent,
   ],
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, MatCardModule, HomeRoutingModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeModule {}

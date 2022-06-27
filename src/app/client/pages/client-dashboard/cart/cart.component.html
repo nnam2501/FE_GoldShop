@@ -1,7 +1,78 @@
-<p>cart works!</p>
-<h3>Cart</h3>
+<div class="wrap cf">
+  <div class="heading cf">
+    <h1>Giỏ hàng</h1>
+    <a routerLink="/products" class="continue">Tiếp tục mua hàng</a>
+  </div>
+  <div class="cart">
+    <ul class="cartWrap" *ngFor="let item of items">
+      <li *ngIf="items.indexOf(item) % 2 === 0; else even" class="items even">
+        <div class="infoWrap">
+          <div class="cartSection">
+            <h3>{{ item.jewerly.jewerlyName }}</h3>
 
-<div class="cart-item" *ngFor="let item of items">
-  <span>{{ item.jewerlyName }}</span>
-  <span>{{ item.price | currency }}</span>
+            <p>
+              <input
+                type="text"
+                class="qty"
+                value="{{ item.quantity }}"
+                disabled
+              />{{ item.unitPrice | currency: "VND" }}
+            </p>
+          </div>
+
+          <div class="prodTotal cartSection">
+            <p>{{ item.amount | currency: "VND" }}</p>
+          </div>
+          <div class="cartSection removeWrap">
+            <a (click)="del(0)" class="remove">x</a>
+          </div>
+        </div>
+      </li>
+
+      <ng-template #even>
+        <li class="items odd">
+          <div class="infoWrap">
+            <div class="cartSection">
+              <h3>{{ item.jewerly.jewerlyName }}</h3>
+
+              <p>
+                <input
+                  type="text"
+                  class="qty"
+                  value="{{ item.quantity }}"
+                  disabled
+                />{{ item.unitPrice | currency: "VND" }}
+              </p>
+            </div>
+
+            <div class="prodTotal cartSection">
+              <p>{{ item.amount | currency: "VND" }}</p>
+            </div>
+            <div class="cartSection removeWrap">
+              <a (click)="del(0)" class="remove">x</a>
+            </div>
+          </div>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+
+  <div class="subtotal cf">
+    <ul>
+      <li class="totalRow final">
+        <span class="label">Tổng tiền</span
+        ><span class="value">{{ total | currency: "VND" }}</span>
+      </li>
+      <li class="totalRow">
+        <button
+          nbButton
+          status="success"
+          (click)="order()"
+          class="btn continue"
+        >
+          Đặt hàng
+        </button>
+      </li>
+    </ul>
+  </div>
 </div>

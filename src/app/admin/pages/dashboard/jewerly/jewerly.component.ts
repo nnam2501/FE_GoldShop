@@ -107,6 +107,7 @@ export class JewerlyComponent implements OnInit {
           type: 'custom',
           component: SelectComponent,
         },
+        filter: false,
       },
     },
     add: {

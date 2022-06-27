@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { NbMenuItem, NbSidebarService } from '@nebular/theme';
+import { EmployeeService } from 'src/app/services/employee/employee.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +10,7 @@ import { NbMenuItem, NbSidebarService } from '@nebular/theme';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  infoEmployee: any;
   items: NbMenuItem[] = [
     {
       title: 'Trang chủ',
@@ -15,12 +18,9 @@ export class DashboardComponent implements OnInit {
       link: '/dashboard',
     },
     {
-      title: 'Người Dùng',
+      title: 'Khách Hàng',
       icon: 'person-outline',
-      children: [
-        { title: 'Nhân Viên', link: '/dashboard/employee' },
-        { title: 'Khách Hàng', link: '/dashboard/customer' },
-      ],
+      link: '/dashboard/customer',
     },
     {
       title: 'Sản Phẩm',
@@ -38,22 +38,38 @@ export class DashboardComponent implements OnInit {
       children: [
         { title: 'Đặt Hàng', link: '/dashboard/order' },
         { title: 'Hóa Đơn', link: '/dashboard/invoice' },
-        { title: 'Nhập Hàng', link: '/dashboard/receipt' },
       ],
     },
   ];
   constructor(
     private sidebarService: NbSidebarService,
+    private userService: UserService,
+    private employeeService: EmployeeService,
     private route: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService
+      .getCurrentUser(localStorage.getItem('access_token'))
+      .subscribe((res: any) => {
+        console.log(res);
+        this.employeeService.getAllEmployee().subscribe((res1: any) => {
+          this.infoEmployee = res1.filter((item: any) => {
+            if (item.account.id === res.id) {
+              return item;
+            }
+          });
+          console.log(this.infoEmployee);
+        });
+      });
+  }
 
   toggle() {
     this.sidebarService.toggle(true, 'left-sidebar');
   }
   logout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('is_staff');
     this.route.navigate(['/']);
   }
 }

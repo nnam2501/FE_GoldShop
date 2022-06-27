@@ -8,5 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ClientDashboardComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // if(localStorage.getItem('ac'))
+  }
 }

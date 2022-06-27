@@ -30,9 +30,13 @@ export class ProductDetailComponent implements OnInit {
       this.product.jewerlyImage = this.convertImg(this.product.jewerlyImage);
     });
   }
+
   addToCart(product: any) {
     this.cartService.addToCart(product);
-    this.showToast('success', `${product.jewerlyName} added to cart`);
+    this.showToast(
+      'success',
+      `${product.jewerlyName} đã được thêm vào giỏ hàng.`
+    );
   }
 
   convertImg(img: string) {

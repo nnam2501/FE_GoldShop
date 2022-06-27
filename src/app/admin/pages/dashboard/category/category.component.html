@@ -1,7 +1,12 @@
-<ng2-smart-table
-  [settings]="settings"
-  [source]="dtCate"
-  (createConfirm)="onAdd($event)"
-  (editConfirm)="onEdit($event)"
-  (deleteConfirm)="onDelete($event)"
-></ng2-smart-table>
+<nb-card>
+  <nb-card-header> Danh sách danh mục </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="dtCate"
+      (createConfirm)="onAdd($event)"
+      (editConfirm)="onEdit($event)"
+      (deleteConfirm)="onDelete($event)"
+    ></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

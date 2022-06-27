@@ -22,6 +22,8 @@ import {
   NbInputModule,
   NbCheckboxModule,
   NbSelectModule,
+  NbDatepickerModule,
+  NbRadioModule,
 } from '@nebular/theme';
 import {
   NbPasswordAuthStrategy,
@@ -29,25 +31,21 @@ import {
   NbAuthService,
 } from '@nebular/auth';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-
-import { CurrentRateComponent } from './page/current-rate/current-rate.component';
-import { ChartGoldRateComponent } from './client/pages/chart-gold-rate/chart-gold-rate.component';
 
 import { LoginComponent } from './shared/pages/login/login.component';
 import { RegisterComponent } from './shared/pages/register/register.component';
 
 import { StoreModule } from '@ngrx/store';
 import { CartComponent } from './client/pages/client-dashboard/cart/cart.component';
+import { UsersPagesComponent } from './client/pages/users-pages/users-pages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrentRateComponent,
-    ChartGoldRateComponent,
     LoginComponent,
     RegisterComponent,
     CartComponent,
+    UsersPagesComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -62,6 +60,8 @@ import { CartComponent } from './client/pages/client-dashboard/cart/cart.compone
     NbThemeModule.forRoot({ name: 'corporate' }),
     NbAuthModule.forRoot(),
     StoreModule.forRoot({}, {}),
+    NbDatepickerModule.forRoot(),
+    NbRadioModule,
   ],
   providers: [
     // {

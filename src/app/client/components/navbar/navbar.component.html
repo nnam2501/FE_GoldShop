@@ -1,15 +1,14 @@
 <div class="menu">
-  <div class="menu-search">
+  <!-- <div class="menu-search">
     <i class="fas fa-search"></i>
-  </div>
+  </div> -->
   <div class="menu-content">
     <ul>
-      <li><a class="active" href="#">HOME</a></li>
-      <li><a href="#spaces">SPACES</a></li>
-      <li><a href="#products&service">PRODUCTS & SERVICES</a></li>
+      <li><a class="active" routerLink="/">Trang chủ</a></li>
       <li><a routerLink="/products">Sản phẩm</a></li>
-      <li><a routerLink="/chart-gold-rate">Giá vàng thế giới</a></li>
-      <li><a href="#contact">CONTACT</a></li>
+      <li><a routerLink="/chart-gold-rate">Giá vàng</a></li>
+      <li><a routerLink="/current-rate">Tỉ giá ngoại tệ</a></li>
+      <li><a routerLink="/">Liên hệ</a></li>
     </ul>
   </div>
   <div class="menu-function">
@@ -20,10 +19,7 @@
         >
       </li>
       <li>
-        <a href="#"><i class="far fa-heart"></i></a>
-      </li>
-      <li>
-        <a routerLink="/login"><i class="far fa-user"></i></a>
+        <a (click)="checkNavigate()"><i class="far fa-user"></i></a>
       </li>
     </ul>
   </div>

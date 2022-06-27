@@ -15,6 +15,7 @@ import {
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../auth/auth.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
   // status2: boolean = false;
 
   constructor(
-    // private router: Router,
+    private userService: UserService,
     private http: HttpClient,
     public formBuilder: FormBuilder,
     private authService: AuthService,
@@ -51,13 +52,29 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
   }
 
   onFormSubmit(user: any) {
-    console.log(user);
+    // user.client_id = this.client.client_id;
+    // user.client_secret = this.client.client_secret;
+    // user.grant_type = this.client.grant_type;
+
+    // this.userService.login(user).subscribe((res) => {
+    //   console.log(res);
+    // });
 
     this.authService.login(user, this.client).subscribe((res) => {
       this.token = res.access_token;
       localStorage.setItem('access_token', res.access_token);
-      if (this.token) {
-        this.router.navigate(['/dashboard']);
+      if (res.access_token !== null) {
+        this.userService
+          .getCurrentUser(res.access_token)
+          .subscribe((res1: any) => {
+            if (res1.is_staff === true) {
+              localStorage.setItem('is_staff', 'true');
+              this.router.navigate(['/dashboard']);
+            } else {
+              localStorage.setItem('is_staff', 'false');
+              this.router.navigate(['/']);
+            }
+          });
       }
     });
     // this.http.get('http://localhost:8000/oauth2-info/').subscribe((data) => {

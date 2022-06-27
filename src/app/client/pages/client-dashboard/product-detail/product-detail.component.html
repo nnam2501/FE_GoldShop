@@ -1,15 +1,77 @@
-<p>product-detail works!</p>
 <div *ngIf="product">
-  <h2>{{ product.jewerlyName }}</h2>
-  <div>
-    <img src="{{ product.jewerlyImage }}" alt="" />
+  <div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-10">
+          <div class="product-content-right">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="product-images">
+                  <div class="product-main-img">
+                    <img src="{{ product.jewerlyImage }}" alt="" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="product-inner">
+                  <h1 class="product-name">{{ product.jewerlyName }}</h1>
+                  <div class="product-inner-price">
+                    <ins>{{ product.price | currency: "VND" }}</ins>
+                  </div>
+
+                  <div>
+                    <h5>Loại sản phẩm</h5>
+                    <div *ngFor="let i of product.typeJewerly">
+                      <p>{{ i.typeName }}</p>
+                    </div>
+                  </div>
+
+                  <div style="margin-top: 20px">
+                    <h5>Mô tả</h5>
+                    <div>
+                      <p>{{ product.description }}</p>
+                    </div>
+                  </div>
+
+                  <form action="" class="cart" style="margin-top: 20px">
+                    <!-- <button class="add_to_cart_button" type="submit">
+                      Add to cart
+                    </button> -->
+                    <button
+                      nbButton
+                      [status]="'primary'"
+                      class="add_to_cart_button"
+                      (click)="addToCart(product)"
+                    >
+                      Thêm vào giỏ hàng
+                    </button>
+                    <button
+                      nbButton
+                      [status]="'danger'"
+                      type="button"
+                      routerLink="/products"
+                    >
+                      Quay lại
+                    </button>
+                  </form>
+
+                  <!-- <div class="product-inner-category">
+                    <p>
+                      Category: <a href="">Summer</a>. Tags:
+                      <a href="">awesome</a>, <a href="">best</a>,
+                      <a href="">sale</a>, <a href="">shoes</a>.
+                    </p>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <p>{{ product.description }}</p>
-  </div>
-  <div>
-    <p>{{ product.price }}</p>
-  </div>
-  <button type="button" (click)="addToCart(product)">Add to cart</button>
-  <button type="button" routerLink="/products">Back to list</button>
 </div>
