@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   NbGlobalLogicalPosition,
   NbToastrService,
@@ -9,6 +9,7 @@ import {
 import { SupplierService } from '../../../../services/supplier/supplier.service';
 import { Supplier } from '../../interface';
 import { DialogComponent } from '../../../components/dialog/dialog.component';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-supplier',
@@ -16,7 +17,9 @@ import { DialogComponent } from '../../../components/dialog/dialog.component';
   styleUrls: ['./supplier.component.scss'],
   providers: [SupplierService],
 })
-export class SupplierComponent implements OnInit {
+export class SupplierComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject<void>();
+
   data: any;
   dtSupp: Supplier[] = [];
   mess: string = '';
@@ -70,10 +73,13 @@ export class SupplierComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<any> {
-    this.api.getSupp().subscribe((res) => {
-      this.data = res;
-      this.dtSupp = this.data;
-    });
+    this.api
+      .getSupp()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((res) => {
+        this.data = res;
+        this.dtSupp = this.data;
+      });
   }
 
   onAdd = (event: any) => {
@@ -194,5 +200,10 @@ export class SupplierComponent implements OnInit {
         confirm: confirms,
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
   }
 }

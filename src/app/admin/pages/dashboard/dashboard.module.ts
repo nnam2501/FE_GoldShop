@@ -6,6 +6,7 @@ import {
 import { CommonModule } from '@angular/common';
 // import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { BrowserModule } from '@angular/platform-browser';
 import {
   NbActionsModule,
   NbButton,
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { SelectComponent } from '../../components/select/select.component';
 import { FileinputComponent } from '../../components/fileinput/fileinput.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { DetailDialogComponent } from '../../components/detail-dialog/detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +36,11 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     SelectComponent,
     FileinputComponent,
     DialogComponent,
+    DetailDialogComponent,
   ],
   imports: [
     CommonModule,
+    // BrowserModule,
     DashboardRoutingModule,
     NbLayoutModule,
     NbSidebarModule,

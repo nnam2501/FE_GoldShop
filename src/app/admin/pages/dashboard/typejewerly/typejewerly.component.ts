@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   NbGlobalLogicalPosition,
   NbToastrService,
@@ -9,13 +9,15 @@ import {
 import { TypejewerlyService } from '../../../../services/typejewerly/typejewerly.service';
 import { CategoryService } from '../../../../services/category/category.service';
 import { DialogComponent } from '../../../components/dialog/dialog.component';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-typejewerly',
   templateUrl: './typejewerly.component.html',
   styleUrls: ['./typejewerly.component.scss'],
 })
-export class TypejewerlyComponent implements OnInit {
+export class TypejewerlyComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject<void>();
   data: any;
   dtType: any[] = [];
   apiCate: any[] = [];
@@ -91,22 +93,28 @@ export class TypejewerlyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.api.getType().subscribe((res) => {
-      this.data = res;
-      this.dtType = this.data;
-    });
+    this.api
+      .getType()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((res) => {
+        this.data = res;
+        this.dtType = this.data;
+      });
 
-    this.apiTmp.getCate().subscribe((res) => {
-      this.data = res;
-      this.dtCate = this.data;
-      for (let c of this.dtCate) {
-        // if (c.active === true) {
-        this.apiCate.push({ value: c.id, title: c.categoryName });
-        // }
-      }
-      this.getData(this.apiCate);
-      console.log(this.apiCate);
-    });
+    this.apiTmp
+      .getCate()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((res) => {
+        this.data = res;
+        this.dtCate = this.data;
+        for (let c of this.dtCate) {
+          // if (c.active === true) {
+          this.apiCate.push({ value: c.id, title: c.categoryName });
+          // }
+        }
+        this.getData(this.apiCate);
+        console.log(this.apiCate);
+      });
   }
   getData(c: any) {
     this.settings.columns.category.editor.config.list = [];
@@ -231,5 +239,10 @@ export class TypejewerlyComponent implements OnInit {
         confirm: confirms,
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
   }
 }

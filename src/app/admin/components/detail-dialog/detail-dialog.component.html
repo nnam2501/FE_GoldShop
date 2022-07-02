@@ -1,0 +1,70 @@
+<!-- <nb-card>
+  <nb-card-header> Thông Báo</nb-card-header>
+  <nb-card-body> ádasdasd </nb-card-body>
+  <nb-card-footer>
+    <button id="cancel1" nbButton status="danger" routerLink="/dashboard/order">
+      Cancel
+    </button>
+    <button id="submit1" nbButton status="success" (click)="submit()">
+      Submit
+    </button>
+  </nb-card-footer>
+</nb-card> -->
+
+<table class="table table-hover" id="print-section">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">NO.</th>
+      <th scope="col">Tên sản phẩm</th>
+      <th scope="col">Số lượng</th>
+      <th scope="col">Đơn giá</th>
+      <th scope="col">Thành tiền</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of dtOrderDetail">
+      <td>{{ d.id }}</td>
+      <ng-container *ngFor="let j of dtJewerly" style="width: 200px !important">
+        <td *ngIf="j.id === d.jewerly">
+          {{ j.jewerlyName }}
+        </td>
+      </ng-container>
+      <!-- <td>{{ d.jewerly }}</td> -->
+      <td>{{ d.quantity }}</td>
+      <td>{{ d.unitPrice }}</td>
+      <td>{{ d.amount }}</td>
+    </tr>
+    <tr>
+      <td colspan="4">Tổng tiền</td>
+
+      <td colspan="1">{{ total }}</td>
+    </tr>
+  </tbody>
+  <tbody></tbody>
+</table>
+
+<button id="cancel1" nbButton status="danger" routerLink="/dashboard/order">
+  Quay lại
+</button>
+<button
+  *ngIf="status"
+  id="submit1"
+  nbButton
+  status="success"
+  (click)="submit()"
+>
+  Hoàn thành
+</button>
+<button id="submit1" nbButton status="success" (click)="createInvoice()">
+  Tạo hóa đơn
+</button>
+<!-- 
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="flex-direction: column">
+    <nb-card-header>Template Dialog</nb-card-header>
+    <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()">Close Dialog</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template> -->

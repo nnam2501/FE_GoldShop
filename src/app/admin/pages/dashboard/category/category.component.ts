@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { OnDestroy, Component, OnInit } from '@angular/core';
 import {
   NbGlobalLogicalPosition,
   NbToastrService,
   NbComponentStatus,
   NbDialogService,
 } from '@nebular/theme';
+import { Subject, takeUntil } from 'rxjs';
 
 import { CategoryService } from '../../../../services/category/category.service';
 import { DialogComponent } from '../../../components/dialog/dialog.component';
@@ -14,7 +15,9 @@ import { DialogComponent } from '../../../components/dialog/dialog.component';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject<void>();
+
   data: any;
   dtCate: any[] = [];
   mess: string = '';
@@ -60,10 +63,13 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.api.getCate().subscribe((res) => {
-      this.data = res;
-      this.dtCate = this.data;
-    });
+    this.api
+      .getCate()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((res) => {
+        this.data = res;
+        this.dtCate = this.data;
+      });
   }
 
   onAdd = (event: any) => {
@@ -141,5 +147,10 @@ export class CategoryComponent implements OnInit {
         confirm: confirms,
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { JewerlyService } from 'src/app/services/jewerly/jewerly.service';
 import { OrderDetailService } from 'src/app/services/order-detail/order-detail.service';
 import { OrderService } from 'src/app/services/order/order.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -18,13 +19,14 @@ export class UsersPagesComponent implements OnInit {
   dtOrder: any = [];
 
   dtDetail: any = [];
-
+  dtJewerly: any = [];
   constructor(
     private route: Router,
     private userService: UserService,
     private customerService: CustomerService,
     private orderService: OrderService,
-    private orderDetailService: OrderDetailService
+    private orderDetailService: OrderDetailService,
+    private jewerlyService: JewerlyService
   ) {}
 
   ngOnInit(): void {
@@ -38,26 +40,20 @@ export class UsersPagesComponent implements OnInit {
             }
           });
           this.info = this.infoCustomer[0];
-          // console.log(this.infoCustomer);
         });
         this.orderService.getAllOrder().subscribe((res2: any) => {
-          // var idOrder;
           res2.forEach((item1: any) => {
-            // console.log(item1);
-            // console.log(this.info);
-
             if (item1.customer === this.info.id) {
               this.dtOrder.push(item1);
             }
           });
-          console.log('order');
 
-          console.log(this.dtOrder);
           this.orderDetailService.getAllOrderDetail().subscribe((res2: any) => {
             this.dtDetail = res2;
-            console.log('orderDetail');
-            console.log(this.dtDetail);
           });
+        });
+        this.jewerlyService.getJewerly().subscribe((res) => {
+          this.dtJewerly = res;
         });
       });
   }
@@ -66,5 +62,13 @@ export class UsersPagesComponent implements OnInit {
     localStorage.removeItem('access_token');
     localStorage.removeItem('is_staff');
     this.route.navigate(['/']);
+  }
+
+  getNameJewerly(id: any) {
+    this.dtJewerly.forEach((item: any) => {
+      if (item.id === id) {
+        return item.jewerlyName;
+      }
+    });
   }
 }

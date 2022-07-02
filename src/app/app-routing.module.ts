@@ -20,19 +20,23 @@ const routes: Routes = [
     path: '',
     component: NbAuthComponent,
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: { animation: 'isRight' },
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: { animation: 'isLeft' },
+      },
     ],
+    data: { animation: 'isRight' },
   },
-
-  // {
-  //   path: 'login',
-  //   component: NbAuthComponent,
-  //   children: [{ path: '', component: LoginComponent }],
-  // },
   {
     path: 'register',
     component: RegisterComponent,
+    data: { animation: 'isLeft' },
   },
   {
     path: 'dashboard',
@@ -41,6 +45,7 @@ const routes: Routes = [
       import('./admin/pages/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
+    data: { animation: 'isRight' },
   },
 ];
 

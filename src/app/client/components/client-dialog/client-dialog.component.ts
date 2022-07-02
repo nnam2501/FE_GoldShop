@@ -18,6 +18,8 @@ export class ClientDialogComponent implements OnInit {
   content: string = '';
   data: any;
   items: any;
+  total: any;
+  status: boolean = false;
   constructor(
     protected dialogRef: NbDialogRef<ClientDialogComponent>,
     private toastrService: NbToastrService,
@@ -29,11 +31,12 @@ export class ClientDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   cancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(this.status);
   }
 
   submit() {
-    this.dialogRef.close();
+    this.status = true;
+    this.dialogRef.close(this.status);
     this.onAdd(this.data, this.items);
     this.showToast('success', `Đặt hàng thành công`);
   }
@@ -55,6 +58,8 @@ export class ClientDialogComponent implements OnInit {
 
         this.orderDetailService.addOrderDetail(data1).subscribe((res1: any) => {
           console.log(res1);
+          // this.total = 0;
+          // this.items = this.cartService.clearCart();
         });
       });
     });

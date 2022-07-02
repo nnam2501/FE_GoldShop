@@ -7,29 +7,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   NbThemeModule,
-  NbLayoutModule,
-  NbSidebarModule,
-  NbSidebarService,
-  NbMenuModule,
-  NbMenuService,
-  NbIconModule,
-  NbToastrModule,
-  NbDialogModule,
-  NbCardModule,
   NbButtonModule,
-  NbActionsModule,
-  NbUserModule,
   NbInputModule,
-  NbCheckboxModule,
-  NbSelectModule,
   NbDatepickerModule,
   NbRadioModule,
 } from '@nebular/theme';
-import {
-  NbPasswordAuthStrategy,
-  NbAuthModule,
-  NbAuthService,
-} from '@nebular/auth';
+import { NbAuthModule } from '@nebular/auth';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { LoginComponent } from './shared/pages/login/login.component';

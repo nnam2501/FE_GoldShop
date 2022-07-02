@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   NbGlobalLogicalPosition,
   NbToastrService,
@@ -12,15 +12,18 @@ import { JewerlyService } from '../../../../services/jewerly/jewerly.service';
 import { DialogComponent } from '../../../components/dialog/dialog.component';
 import { SelectComponent } from '../../../components/select/select.component';
 import { FileinputComponent } from '../../../components/fileinput/fileinput.component';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-jewerly',
   templateUrl: './jewerly.component.html',
   styleUrls: ['./jewerly.component.scss'],
 })
-export class JewerlyComponent implements OnInit {
+export class JewerlyComponent implements OnInit, OnDestroy {
   // @ViewChild(SelectComponent) ch: any;
   // arrSelected: any[] = [];
+
+  private ngUnsubscribe = new Subject<void>();
 
   data: any;
   dtJewerly: any[] = [];
@@ -108,6 +111,7 @@ export class JewerlyComponent implements OnInit {
           component: SelectComponent,
         },
         filter: false,
+        width: '200px',
       },
     },
     add: {
@@ -128,7 +132,7 @@ export class JewerlyComponent implements OnInit {
     },
     pager: {
       display: true,
-      perPage: 5,
+      perPage: 3,
     },
     actions: {
       position: 'right',
@@ -144,24 +148,32 @@ export class JewerlyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.api.getJewerly().subscribe((data: any) => {
-      this.dtJewerly = data;
-    });
+    this.api
+      .getJewerly()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data: any) => {
+        this.dtJewerly = data;
+      });
 
-    this.apiType.getType().subscribe((res) => {
-      console.log(res);
-      this.dtType = res;
-    });
+    this.apiType
+      .getType()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((res) => {
+        console.log(res);
+        this.dtType = res;
+      });
 
-    this.apiSupp.getSupp().subscribe((res) => {
-      this.data = res;
-      this.dtSupp = this.data;
-      for (let c of this.data) {
-        this.suppArr.push({ value: c.id, title: c.supplierName });
-      }
-      this.getData(this.suppArr);
-      console.log(this.suppArr);
-    });
+    this.apiSupp
+      .getSupp()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((res) => {
+        this.data = res;
+        this.dtSupp = this.data;
+        for (let c of this.data) {
+          this.suppArr.push({ value: c.id, title: c.supplierName });
+        }
+        this.getData(this.suppArr);
+      });
   }
 
   getData(c: any) {
@@ -176,6 +188,8 @@ export class JewerlyComponent implements OnInit {
   }
 
   onAdd = (event: any) => {
+    console.log(event);
+
     let arrTmp = event.newData.typeJewerly;
     let arrType: any[] = [];
 
@@ -306,5 +320,10 @@ export class JewerlyComponent implements OnInit {
         confirm: confirms,
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
   }
 }

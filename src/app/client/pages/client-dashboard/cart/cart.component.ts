@@ -71,8 +71,8 @@ export class CartComponent implements OnInit {
         };
         if (this.items.length > 0) {
           this.showDialog(data, this.items);
-          this.total = 0;
-          return (this.items = this.cartService.clearCart());
+          // return (this.total = 0);
+          // return (this.items = this.cartService.clearCart());
         } else {
           this.showToast('danger', 'Giỏ hàng trống');
         }
@@ -91,7 +91,6 @@ export class CartComponent implements OnInit {
     let a = this.cartService.removeItems(id);
     this.countTotal();
     // console.log(this.cartService.getItems());
-    console.log(a);
   }
 
   countTotal() {
@@ -103,13 +102,21 @@ export class CartComponent implements OnInit {
   }
 
   showDialog(data: any, items: any) {
-    this.dialogService.open(ClientDialogComponent, {
-      closeOnBackdropClick: false,
-      context: {
-        data: data,
-        items: items,
-      },
-    });
+    this.dialogService
+      .open(ClientDialogComponent, {
+        closeOnBackdropClick: false,
+        context: {
+          data: data,
+          items: items,
+        },
+      })
+      .onClose.subscribe((status) => {
+        if (status) {
+          this.total = 0;
+          this.items = this.cartService.clearCart();
+        }
+      });
+    // .close((this.items = this.cartService.clearCart()));
   }
 
   showToast(status: NbComponentStatus, mess: string) {

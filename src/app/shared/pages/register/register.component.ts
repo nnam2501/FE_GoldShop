@@ -7,7 +7,7 @@ import {
 import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { UserService } from 'src/app/services/user/user.service';
+import { UserService } from '../../../services/user/user.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({

@@ -8,9 +8,8 @@ describe('TypejewerlyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TypejewerlyComponent ]
-    })
-    .compileComponents();
+      declarations: [TypejewerlyComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

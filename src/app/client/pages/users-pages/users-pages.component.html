@@ -60,6 +60,7 @@
                 <input
                   class="form-control form-control-alternative datepicker"
                   name="dp"
+                  type="date"
                   value="{{ info.dateOfBirth }}"
                 />
               </div>
@@ -129,7 +130,7 @@
   <!-- Table -->
   <div class="row">
     <div class="col">
-      <div class="card shadow">
+      <div class="card shadow" style="overflow: scroll; height: 500px">
         <div class="card-header border-0">
           <h2 class="mb-0">Danh sách đơn đặt hàng</h2>
         </div>
@@ -151,7 +152,7 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">NO.</th>
-                  <th scope="col">Mã sản phẩm</th>
+                  <th scope="col">Tên sản phẩm</th>
                   <th scope="col">Số lượng</th>
                   <th scope="col">Đơn giá</th>
                   <th scope="col">Thành tiền</th>
@@ -161,7 +162,15 @@
               <tbody *ngFor="let d of dtDetail">
                 <tr *ngIf="d.order === i.id">
                   <td>{{ d.id }}</td>
-                  <td>{{ d.jewerly }}</td>
+                  <ng-container
+                    *ngFor="let j of dtJewerly"
+                    style="width: 200px !important"
+                  >
+                    <td *ngIf="j.id === d.jewerly">
+                      {{ j.jewerlyName }}
+                    </td>
+                  </ng-container>
+                  <!-- <td>{{ d.jewerly }}</td> -->
                   <td>{{ d.quantity }}</td>
                   <td>{{ d.unitPrice | currency: "VND" }}</td>
                   <td>{{ d.amount | currency: "VND" }}</td>

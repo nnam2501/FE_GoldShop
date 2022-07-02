@@ -26,3 +26,5 @@ export const userURL = baseURL + 'users/';
 export const customerURL = baseURL + 'customer/';
 
 export const employeeURL = baseURL + 'employee/';
+
+export const invoiceURL = baseURL + 'invoice/';

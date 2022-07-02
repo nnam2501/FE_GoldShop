@@ -18,18 +18,33 @@ const routes: Routes = [
         path: '',
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
+        data: { animation: 'isRight' },
       },
-      { path: 'chart-gold-rate', component: ChartGoldRateComponent },
-      { path: 'current-rate', component: CurrentRateComponent },
+      {
+        path: 'chart-gold-rate',
+        component: ChartGoldRateComponent,
+        data: { animation: 'isLeft' },
+      },
+      {
+        path: 'current-rate',
+        component: CurrentRateComponent,
+        data: { animation: 'isRight' },
+      },
       {
         path: 'products',
         component: ProductPageComponent,
+        data: { animation: 'isLeft' },
       },
-      { path: 'products/:id', component: ProductDetailComponent },
-      { path: 'cart', component: CartComponent },
+      {
+        path: 'products/:id',
+        component: ProductDetailComponent,
+        data: { animation: 'isRight' },
+      },
+      { path: 'cart', component: CartComponent, data: { animation: 'isLeft' } },
       {
         path: 'user-info',
         component: UsersPagesComponent,
+        data: { animation: 'isRight' },
       },
     ],
   },

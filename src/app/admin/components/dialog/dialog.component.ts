@@ -10,6 +10,7 @@ import { CategoryService } from '../../../services/category/category.service';
 import { TypejewerlyService } from '../../../services/typejewerly/typejewerly.service';
 import { JewerlyService } from '../../../services/jewerly/jewerly.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { InvoicesService } from 'src/app/services/invoives/invoices.service';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -31,7 +32,8 @@ export class DialogComponent implements OnInit {
     private apiCate: CategoryService,
     private apiType: TypejewerlyService,
     private apiJew: JewerlyService,
-    private apiCust: CustomerService
+    private apiCust: CustomerService,
+    private invoiceServices: InvoicesService
   ) {}
 
   ngOnInit(): void {}
@@ -52,7 +54,7 @@ export class DialogComponent implements OnInit {
     if (this.subjects === 'trang sức') {
       this.onChange(this.method, this.subjects, this.confirm);
     }
-    if (this.subjects === 'khách hàng') {
+    if (this.subjects === 'hóa đơn') {
       this.onChange(this.method, this.subjects, this.confirm);
     }
   }
@@ -101,6 +103,13 @@ export class DialogComponent implements OnInit {
         confirm.resolve(res);
       });
     }
+    if (text === 'hóa đơn') {
+      this.invoiceServices.addNewInvoice(this.data).subscribe((res) => {
+        // confirm.resolve(res);
+        console.log('hoaaa donnn');
+        console.log(res);
+      });
+    }
   };
 
   onDelete = async (text: string, confirm: any) => {
@@ -124,11 +133,11 @@ export class DialogComponent implements OnInit {
         confirm.resolve(res);
       });
     }
-    if (text === 'khách hàng') {
-      this.apiCust.delTmpCustomer(this.data).subscribe((res) => {
-        confirm.resolve(res);
-      });
-    }
+    // if (text === 'khách hàng') {
+    //   this.apiCust.delTmpCustomer(this.data).subscribe((res) => {
+    //     confirm.resolve(res);
+    //   });
+    // }
   };
 
   onEdit = (text: string, confirm: any) => {
@@ -153,11 +162,11 @@ export class DialogComponent implements OnInit {
         confirm.resolve(res);
       });
     }
-    if (text === 'khách hàng') {
-      this.apiCust.putCustomer(this.data.id, this.data).subscribe((res) => {
-        confirm.resolve(res);
-      });
-    }
+    // if (text === 'khách hàng') {
+    //   this.apiCust.putCustomer(this.data.id, this.data).subscribe((res) => {
+    //     confirm.resolve(res);
+    //   });
+    // }
   };
 
   showToast(status: NbComponentStatus, mess: string) {

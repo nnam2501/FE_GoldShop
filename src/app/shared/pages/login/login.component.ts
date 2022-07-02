@@ -5,14 +5,7 @@ import {
   NbLoginComponent,
   NB_AUTH_OPTIONS,
 } from '@nebular/auth';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';

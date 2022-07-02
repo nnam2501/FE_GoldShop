@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   NbComponentStatus,
   NbDialogService,
   NbGlobalLogicalPosition,
   NbToastrService,
 } from '@nebular/theme';
+import { Subject, takeUntil } from 'rxjs';
 import { DialogComponent } from 'src/app/admin/components/dialog/dialog.component';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
@@ -13,7 +14,8 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss'],
 })
-export class CustomerComponent implements OnInit {
+export class CustomerComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject<void>();
   dataCustomer: any;
 
   settings = {
@@ -77,9 +79,12 @@ export class CustomerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.customerService.getAllCustomer().subscribe((res) => {
-      this.dataCustomer = res;
-    });
+    this.customerService
+      .getAllCustomer()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((res) => {
+        this.dataCustomer = res;
+      });
   }
 
   onEdit = (event: any) => {
@@ -137,5 +142,10 @@ export class CustomerComponent implements OnInit {
         confirm: confirms,
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
   }
 }
