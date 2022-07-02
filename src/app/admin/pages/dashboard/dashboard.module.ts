@@ -1,15 +1,8 @@
-import {
-  NgModule,
-  CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { BrowserModule } from '@angular/platform-browser';
 import {
   NbActionsModule,
-  NbButton,
   NbButtonModule,
   NbCardModule,
   NbDialogModule,
@@ -40,7 +33,6 @@ import { DetailDialogComponent } from '../../components/detail-dialog/detail-dia
   ],
   imports: [
     CommonModule,
-    // BrowserModule,
     DashboardRoutingModule,
     NbLayoutModule,
     NbSidebarModule,
@@ -56,6 +48,5 @@ import { DetailDialogComponent } from '../../components/detail-dialog/detail-dia
     NbDialogModule.forRoot(),
   ],
   providers: [NbSidebarService, NbMenuService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DashboardModule {}

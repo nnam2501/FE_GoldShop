@@ -31,13 +31,13 @@
       </ng-container>
       <!-- <td>{{ d.jewerly }}</td> -->
       <td>{{ d.quantity }}</td>
-      <td>{{ d.unitPrice }}</td>
-      <td>{{ d.amount }}</td>
+      <td>{{ d.unitPrice | currency: "VND" }}</td>
+      <td>{{ d.amount | currency: "VND" }}</td>
     </tr>
     <tr>
       <td colspan="4">Tổng tiền</td>
 
-      <td colspan="1">{{ total }}</td>
+      <td colspan="1">{{ total | currency: "VND" }}</td>
     </tr>
   </tbody>
   <tbody></tbody>

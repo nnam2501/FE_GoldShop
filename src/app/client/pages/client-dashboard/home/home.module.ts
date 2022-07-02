@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
@@ -22,6 +22,5 @@ import { ProjectsComponent } from './projects/projects.component';
     ProjectsComponent,
   ],
   imports: [CommonModule, MatCardModule, HomeRoutingModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeModule {}
